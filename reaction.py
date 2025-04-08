@@ -17,3 +17,4 @@ if button.pin.number == 14:
         print(left_name + 'won the game')
 else:
         print(right_name + 'won the game')
+exit()
