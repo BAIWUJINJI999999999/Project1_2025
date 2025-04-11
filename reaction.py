@@ -9,6 +9,9 @@ right_name = input('right player name is')
 left_score = 0
 right_score = 0
 rounds = int(input('The number of rounds is'))
+
+game_over = False
+
 def pressed(button):
     global left_score, right_score
     if button.pin.number == 14:
@@ -19,6 +22,7 @@ def pressed(button):
         print(f'\n{right_name} won the game! {left_name} {left_score}-{right_score} {right_name}')
     check_game_end()
 def check_game_end():
+    global game_over
     if (left_score + right_score) >= rounds:
         print('\n===END===')
         print(f'The final score:{left_name} {left_score}-{right_score} {right_name}')
@@ -28,10 +32,15 @@ def check_game_end():
             print(f'{right_name} won the game!')
         else:
             print('Draw!')
-        exit()
+        game_over = True
+  
 right_button.when_pressed = pressed
 left_button.when_pressed = pressed
 while True:
+    if game_over:
+        print ("Exiting the program...")
+        exit()
+
     print('\n===New Round===')
     led.on()
     delay = uniform(5,10)
@@ -40,4 +49,4 @@ while True:
     sleep(3)
     if led.is_lit == False:
         print('Nothing responds.')
-exit()
+
