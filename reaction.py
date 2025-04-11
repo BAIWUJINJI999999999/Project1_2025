@@ -40,3 +40,4 @@ while True:
     sleep(3)
     if led.is_lit == False:
         print('Nothing responds.')
+exit()
